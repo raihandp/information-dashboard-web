@@ -1,5 +1,4 @@
 node_modules
-src/lib/server/db/seeder/seeder.ts
 
 # Output
 .output
@@ -22,3 +21,4 @@ Thumbs.db
 # Vite
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+src/lib/server/db/seeder/seeder.ts

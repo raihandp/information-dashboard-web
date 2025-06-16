@@ -1,16 +1,17 @@
-import { drizzle } from 'drizzle-orm/mysql2';
+import { drizzle, MySql2Database } from 'drizzle-orm/mysql2';
 import mysql from 'mysql2/promise';
-import { env } from '$env/dynamic/private';
+import 'dotenv/config';
+// Change Seeder File to Production
 import { seeder } from '$lib/server/db/seeder/seeder';
 
-if (!env.DATABASE_URL) throw new Error('DATABASE_URL is not set');
+if (!process.env.DATABASE_URL) throw new Error('DATABASE_URL is not set');
 
-const client = mysql.createPool(env.DATABASE_URL);
+const client = mysql.createPool(process.env.DATABASE_URL!);
 
 export const db = drizzle(client, { casing: 'snake_case' });
 
 async function main() {
-	seeder();
+	seeder(db);
 }
 
 main();

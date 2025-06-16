@@ -1,4 +1,5 @@
 node_modules
+src/lib/server/db/seeder/seeder.ts
 
 # Output
 .output

@@ -1,7 +1,7 @@
 {
   "version": "5",
   "dialect": "mysql",
-  "id": "d7d92c20-5c2a-447f-885c-06d728eb8edc",
+  "id": "ded1fd08-30ed-40cb-9b29-2739945aa829",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "role": {
@@ -21,16 +21,16 @@
           "notNull": true,
           "autoincrement": false
         },
-        "createdAt": {
-          "name": "createdAt",
+        "created_at": {
+          "name": "created_at",
           "type": "timestamp",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false,
           "default": "(now())"
         },
-        "updatedAt": {
-          "name": "updatedAt",
+        "updated_at": {
+          "name": "updated_at",
           "type": "timestamp",
           "primaryKey": false,
           "notNull": true,
@@ -55,30 +55,30 @@
     "user_role": {
       "name": "user_role",
       "columns": {
-        "userId": {
-          "name": "userId",
+        "user_id": {
+          "name": "user_id",
           "type": "int",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
         },
-        "roleId": {
-          "name": "roleId",
+        "role_id": {
+          "name": "role_id",
           "type": "int",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
         },
-        "createdAt": {
-          "name": "createdAt",
+        "created_at": {
+          "name": "created_at",
           "type": "timestamp",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false,
           "default": "(now())"
         },
-        "updatedAt": {
-          "name": "updatedAt",
+        "updated_at": {
+          "name": "updated_at",
           "type": "timestamp",
           "primaryKey": false,
           "notNull": true,
@@ -89,12 +89,12 @@
       },
       "indexes": {},
       "foreignKeys": {
-        "user_role_userId_user_id_fk": {
-          "name": "user_role_userId_user_id_fk",
+        "user_role_user_id_user_id_fk": {
+          "name": "user_role_user_id_user_id_fk",
           "tableFrom": "user_role",
           "tableTo": "user",
           "columnsFrom": [
-            "userId"
+            "user_id"
           ],
           "columnsTo": [
             "id"
@@ -102,12 +102,12 @@
           "onDelete": "no action",
           "onUpdate": "no action"
         },
-        "user_role_roleId_role_id_fk": {
-          "name": "user_role_roleId_role_id_fk",
+        "user_role_role_id_role_id_fk": {
+          "name": "user_role_role_id_role_id_fk",
           "tableFrom": "user_role",
           "tableTo": "role",
           "columnsFrom": [
-            "roleId"
+            "role_id"
           ],
           "columnsTo": [
             "id"
@@ -117,11 +117,11 @@
         }
       },
       "compositePrimaryKeys": {
-        "user_role_userId_roleId_pk": {
-          "name": "user_role_userId_roleId_pk",
+        "user_role_user_id_role_id_pk": {
+          "name": "user_role_user_id_role_id_pk",
           "columns": [
-            "userId",
-            "roleId"
+            "user_id",
+            "role_id"
           ]
         }
       },
@@ -152,23 +152,23 @@
           "notNull": true,
           "autoincrement": false
         },
-        "userAuthToken": {
-          "name": "userAuthToken",
+        "user_auth_token": {
+          "name": "user_auth_token",
           "type": "varchar(255)",
           "primaryKey": false,
           "notNull": false,
           "autoincrement": false
         },
-        "createdAt": {
-          "name": "createdAt",
+        "created_at": {
+          "name": "created_at",
           "type": "timestamp",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false,
           "default": "(now())"
         },
-        "updatedAt": {
-          "name": "updatedAt",
+        "updated_at": {
+          "name": "updated_at",
           "type": "timestamp",
           "primaryKey": false,
           "notNull": true,
@@ -194,10 +194,10 @@
             "username"
           ]
         },
-        "user_userAuthToken_unique": {
-          "name": "user_userAuthToken_unique",
+        "user_user_auth_token_unique": {
+          "name": "user_user_auth_token_unique",
           "columns": [
-            "userAuthToken"
+            "user_auth_token"
           ]
         }
       },

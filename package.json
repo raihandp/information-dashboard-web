@@ -17,6 +17,7 @@
 		"db:studio": "drizzle-kit studio"
 	},
 	"devDependencies": {
+		"@internationalized/date": "^3.8.2",
 		"@lucide/svelte": "^0.514.0",
 		"@sveltejs/adapter-node": "^5.2.12",
 		"@sveltejs/kit": "^2.16.0",
@@ -24,6 +25,7 @@
 		"@tailwindcss/vite": "^4.0.0",
 		"@types/bcrypt": "^5.0.2",
 		"@types/node": "^20",
+		"bits-ui": "^2.8.3",
 		"clsx": "^2.1.1",
 		"drizzle-kit": "^0.30.2",
 		"prettier": "^3.4.2",

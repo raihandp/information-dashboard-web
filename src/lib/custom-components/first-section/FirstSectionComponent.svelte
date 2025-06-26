@@ -28,8 +28,10 @@
 			<Card.Title>{cardOneTitle}</Card.Title>
 			<Card.Description>{cardOneDesc}</Card.Description>
 		</Card.Header>
-		<Card.Content class="w-[90%]">
-			<VideoProfileComponent {imageOne} {video} />
+		<Card.Content class="flex w-full items-center justify-center">
+			<div class="w-[90%]">
+				<VideoProfileComponent {imageOne} {video} />
+			</div>
 		</Card.Content>
 	</Card.Root>
 	<Card.Root class="bg-emerald-500/30 drop-shadow-lg backdrop-blur-sm">
@@ -37,8 +39,10 @@
 			<Card.Title>{cardTwoTitle}</Card.Title>
 			<Card.Description>{cardTwoDesc}</Card.Description>
 		</Card.Header>
-		<Card.Content class="w-[90%]">
-			<PostPictureComponent {images} />
+		<Card.Content class="flex w-full items-center justify-center">
+			<div class="w-[90%]">
+				<PostPictureComponent {images} />
+			</div>
 		</Card.Content>
 	</Card.Root>
 </div>

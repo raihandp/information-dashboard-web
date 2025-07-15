@@ -5,7 +5,11 @@
  import SearchIcon from "@lucide/svelte/icons/search";
  import SettingsIcon from "@lucide/svelte/icons/settings";
  import * as Sidebar from "$lib/components/ui/sidebar/index.js";
- 
+
+ import PlusIcon from "@lucide/svelte/icons/plus";
+//  import * as DropdownMenu from "$lib/components/ui/dropdown-menu/index.js";
+
+  
  // Menu items.
  const items = [
   {
@@ -37,6 +41,30 @@
 </script>
  
 <Sidebar.Root>
+  <Sidebar.Header>
+    <!-- <Sidebar.Menu>
+      <Sidebar.MenuItem>
+        <DropdownMenu.Root>
+          <DropdownMenu.Trigger>
+            {#snippet child({ props })}
+              <Sidebar.MenuButton {...props}>
+                Select Workspace
+                <ChevronDown class="ml-auto" />
+              </Sidebar.MenuButton>
+            {/snippet}
+          </DropdownMenu.Trigger>
+          <DropdownMenu.Content class="w-(--bits-dropdown-menu-anchor-width)">
+            <DropdownMenu.Item>
+              <span>Acme Inc</span>
+            </DropdownMenu.Item>
+            <DropdownMenu.Item>
+              <span>Acme Corp.</span>
+            </DropdownMenu.Item>
+          </DropdownMenu.Content>
+        </DropdownMenu.Root>
+      </Sidebar.MenuItem>
+    </Sidebar.Menu> -->
+  </Sidebar.Header>
  <Sidebar.Content>
   <Sidebar.Group>
    <Sidebar.GroupLabel>Application</Sidebar.GroupLabel>
@@ -57,5 +85,50 @@
     </Sidebar.Menu>
    </Sidebar.GroupContent>
   </Sidebar.Group>
+  <Sidebar.Group>
+   <Sidebar.GroupLabel>Projects</Sidebar.GroupLabel>
+   <Sidebar.GroupAction title="Add Project">
+    <PlusIcon /> <span class="sr-only">Add Project</span>
+   </Sidebar.GroupAction>
+   <Sidebar.GroupContent />
+  </Sidebar.Group>
  </Sidebar.Content>
-</Sidebar.Root>
+     <Sidebar.Footer>
+      <Sidebar.Menu>
+        <Sidebar.MenuItem>
+          <DropdownMenu.Root>
+            <DropdownMenu.Trigger>
+              {#snippet child({ props })}
+                <Sidebar.MenuButton
+                  {...props}
+                  class="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
+                >
+                  Username
+                  <ChevronUp class="ml-auto" />
+                </Sidebar.MenuButton>
+              {/snippet}
+            </DropdownMenu.Trigger>
+            <DropdownMenu.Content
+              side="top"
+              class="w-(--bits-dropdown-menu-anchor-width)"
+            >
+              <DropdownMenu.Item>
+                <span>Account</span>
+              </DropdownMenu.Item>
+              <DropdownMenu.Item>
+                <span>Billing</span>
+              </DropdownMenu.Item>
+              <DropdownMenu.Item>
+                <span>Sign out</span>
+              </DropdownMenu.Item>
+            </DropdownMenu.Content>
+          </DropdownMenu.Root>
+        </Sidebar.MenuItem>
+      </Sidebar.Menu>
+    </Sidebar.Footer>
+  </Sidebar.Root>
+  <Sidebar.Inset>
+    <header class="flex h-12 items-center justify-between px-4">
+      <Sidebar.Trigger />
+    </header>
+  </Sidebar.Inset>

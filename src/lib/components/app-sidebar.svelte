@@ -64,25 +64,25 @@
           <DropdownMenu.Trigger>
             {#snippet child({ props })}
               <Sidebar.MenuButton {...props}>
-                Select Workspace
-                <ChevronDown class="ml-auto" />
+                Dashboard Web Lobby
+                <!-- <ChevronDown class="ml-auto" /> -->
               </Sidebar.MenuButton>
             {/snippet}
           </DropdownMenu.Trigger>
-          <DropdownMenu.Content class="w-(--bits-dropdown-menu-anchor-width)">
+          <!-- <DropdownMenu.Content class="w-(--bits-dropdown-menu-anchor-width)">
             <DropdownMenu.Item>
               <span>Acme Inc</span>
             </DropdownMenu.Item>
             <DropdownMenu.Item>
               <span>Acme Corp.</span>
             </DropdownMenu.Item>
-          </DropdownMenu.Content>
+          </DropdownMenu.Content> -->
         </DropdownMenu.Root>
       </Sidebar.MenuItem>
     </Sidebar.Menu>
   </Sidebar.Header>
 
-  <Sidebar.Content>
+  <Sidebar.Content style="margin: 10px;">
     <Sidebar.Group>
     <Sidebar.GroupContent>
       <Sidebar.Menu>
@@ -113,7 +113,7 @@
                 {...props}
                 class="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
               >
-                Username
+                Nama Akun
                 <ChevronUp class="ml-auto" />
               </Sidebar.MenuButton>
             {/snippet}
@@ -123,10 +123,7 @@
             class="w-(--bits-dropdown-menu-anchor-width)"
           >
             <DropdownMenu.Item>
-              <span>Account</span>
-            </DropdownMenu.Item>
-            <DropdownMenu.Item>
-              <span>Billing</span>
+              <span>Lihat Profil</span>
             </DropdownMenu.Item>
             <DropdownMenu.Item>
               <span>Sign out</span>

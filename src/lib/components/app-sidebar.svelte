@@ -13,7 +13,11 @@
  const items = [
   {
    title: "Edit Banner 1",
+<<<<<<< HEAD
    url: "edit-banner 1",
+=======
+   url: "/dashboard/banner-1",
+>>>>>>> ce16fc5c2c588152dc83a030e08b3b0847531d1b
   //  icon: HouseIcon,
   },
   {
@@ -41,31 +45,6 @@
    url: "#",
   //  icon: HouseIcon,
   },
-  // {
-  //  title: "Home",
-  //  url: "#",
-  //  icon: HouseIcon,
-  // },
-  // {
-  //  title: "Inbox",
-  //  url: "#",
-  //  icon: InboxIcon,
-  // },
-  // {
-  //  title: "Calendar",
-  //  url: "#",
-  //  icon: CalendarIcon,
-  // },
-  // {
-  //  title: "Search",
-  //  url: "#",
-  //  icon: SearchIcon,
-  // },
-  // {
-  //  title: "Settings",
-  //  url: "#",
-  //  icon: SettingsIcon,
-  // },
  ];
 </script>
  
@@ -94,6 +73,7 @@
       </Sidebar.MenuItem>
     </Sidebar.Menu> -->
   </Sidebar.Header>
+
  <Sidebar.Content>
   <Sidebar.Group>
    <Sidebar.GroupLabel>Application</Sidebar.GroupLabel>
@@ -114,40 +94,13 @@
     </Sidebar.Menu>
    </Sidebar.GroupContent>
   </Sidebar.Group>
+<<<<<<< HEAD
   
 
+=======
+>>>>>>> ce16fc5c2c588152dc83a030e08b3b0847531d1b
  </Sidebar.Content>
-    <!-- <Sidebar.Footer>
-      <Sidebar.Menu>
-        <Sidebar.MenuItem>
-          <DropdownMenu.Root>
-            <DropdownMenu.Trigger>
-              {#snippet child({ props })}
-                <Sidebar.MenuButton
-                  {...props}
-                  class="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
-                >
-                  Username
-                  <ChevronUp class="ml-auto" />
-                </Sidebar.MenuButton>
-              {/snippet}
-            </DropdownMenu.Trigger>
-            <DropdownMenu.Content
-              side="top"
-              class="w-(--bits-dropdown-menu-anchor-width)"
-            >
-              <DropdownMenu.Item>
-                <span>Account</span>
-              </DropdownMenu.Item>
-              <DropdownMenu.Item>
-                <span>Billing</span>
-              </DropdownMenu.Item>
-              <DropdownMenu.Item>
-                <span>Sign out</span>
-              </DropdownMenu.Item>
-            </DropdownMenu.Content>
-          </DropdownMenu.Root>
-        </Sidebar.MenuItem>
-      </Sidebar.Menu>
-    </Sidebar.Footer> -->
+
+    <Sidebar.Footer>
+    </Sidebar.Footer>
 </Sidebar.Root>

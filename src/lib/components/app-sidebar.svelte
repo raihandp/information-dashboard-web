@@ -13,36 +13,32 @@
  const items = [
   {
    title: "Edit Banner 1",
-<<<<<<< HEAD
-   url: "edit-banner 1",
-=======
    url: "/dashboard/banner-1",
->>>>>>> ce16fc5c2c588152dc83a030e08b3b0847531d1b
   //  icon: HouseIcon,
   },
   {
    title: "Edit Banner 2",
-   url: "#",
+   url: "/dashboard/banner-2",
   //  icon: HouseIcon,
   },
   {
    title: "Edit Banner 3",
-   url: "#",
+   url: "/dashboard/banner-3",
   //  icon: HouseIcon,
   },
   {
    title: "Edit Grup Tombol",
-   url: "#",
+   url: "/dashboard/edit-button",
   //  icon: HouseIcon,
   },
   {
    title: "Edit Slideshow",
-   url: "#",
+   url: "/dashboard/slideshow",
   //  icon: HouseIcon,
   },
   {
    title: "Edit Teks Berjalan",
-   url: "#",
+   url: "/dashboard/running-text",
   //  icon: HouseIcon,
   },
  ];
@@ -94,11 +90,6 @@
     </Sidebar.Menu>
    </Sidebar.GroupContent>
   </Sidebar.Group>
-<<<<<<< HEAD
-  
-
-=======
->>>>>>> ce16fc5c2c588152dc83a030e08b3b0847531d1b
  </Sidebar.Content>
 
     <Sidebar.Footer>

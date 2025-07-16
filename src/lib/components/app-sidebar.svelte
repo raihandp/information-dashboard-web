@@ -18,27 +18,27 @@
   },
   {
    title: "Edit Banner 2",
-   url: "#",
+   url: "/dashboard/banner-2",
   //  icon: HouseIcon,
   },
   {
    title: "Edit Banner 3",
-   url: "#",
+   url: "/dashboard/banner-3",
   //  icon: HouseIcon,
   },
   {
    title: "Edit Grup Tombol",
-   url: "#",
+   url: "/dashboard/edit-button",
   //  icon: HouseIcon,
   },
   {
    title: "Edit Slideshow",
-   url: "#",
+   url: "/dashboard/slideshow",
   //  icon: HouseIcon,
   },
   {
    title: "Edit Teks Berjalan",
-   url: "#",
+   url: "/dashboard/running-text",
   //  icon: HouseIcon,
   },
  ];

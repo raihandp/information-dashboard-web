@@ -13,7 +13,7 @@
  const items = [
   {
    title: "Edit Banner 1",
-   url: "#",
+   url: "edit-banner 1",
   //  icon: HouseIcon,
   },
   {
@@ -115,13 +115,7 @@
    </Sidebar.GroupContent>
   </Sidebar.Group>
   
-  <!-- <Sidebar.Group>
-   <Sidebar.GroupLabel>Projects</Sidebar.GroupLabel>
-   <Sidebar.GroupAction title="Add Project">
-    <PlusIcon /> <span class="sr-only">Add Project</span>
-   </Sidebar.GroupAction>
-   <Sidebar.GroupContent />
-  </Sidebar.Group> -->
+
  </Sidebar.Content>
     <!-- <Sidebar.Footer>
       <Sidebar.Menu>

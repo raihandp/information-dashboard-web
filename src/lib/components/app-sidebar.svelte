@@ -37,17 +37,17 @@
   {
    title: "Edit Grup Tombol",
    url: "/dashboard/edit-button",
-  //  icon: SquareMousePointer,
+  icon: SquareMousePointer,
   },
   {
    title: "Edit Slideshow",
    url: "/dashboard/slideshow",
-  //  icon: TvMinimalPlay,
+  icon: TvMinimalPlay,
   },
   {
    title: "Edit Teks Berjalan",
    url: "/dashboard/running-text",
-  //  icon: RectangleEllipsis,
+  icon: RectangleEllipsis,
   },
  ];
 </script>

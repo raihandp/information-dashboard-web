@@ -1,6 +1,6 @@
 <script lang="ts">
  import * as Sidebar from "$lib/components/ui/sidebar/index.js";
- import { 
+  import { 
   HouseIcon, 
   SquarePen, 
   Tally1, 
@@ -11,12 +11,12 @@
   RectangleEllipsis,
   ChevronDown,
   ChevronUp,
- } from '@lucide/svelte';
+  } from '@lucide/svelte';
  import * as DropdownMenu from "$lib/components/ui/dropdown-menu/index.js";
 
 
  // Menu items.
- const items = [
+  const items = [
   // {
   //  title: "Halaman Depan",
   //  url: "/",
@@ -24,38 +24,38 @@
   // },
 
   {
-   title: "Edit Banner 1",
-   url: "/dashboard/banner-1",
-   icon: Tally1,
+    title: "Edit Banner 1",
+    url: "/dashboard/banner-1",
+    icon: Tally1,
   },
   {
-   title: "Edit Banner 2",
-   url: "/dashboard/banner-2",
-   icon: Tally2,
+    title: "Edit Banner 2",
+    url: "/dashboard/banner-2",
+    icon: Tally2,
   },
   {
-   title: "Edit Banner 3",
-   url: "/dashboard/banner-3",
-   icon: Tally3,
+    title: "Edit Banner 3",
+    url: "/dashboard/banner-3",
+    icon: Tally3,
   },
   {
-   title: "Edit Grup Tombol",
-   url: "/dashboard/edit-button",
-   icon: SquareMousePointer,
+    title: "Edit Grup Tombol",
+    url: "/dashboard/edit-button",
+    icon: SquareMousePointer,
   },
   {
-   title: "Edit Slideshow",
-   url: "/dashboard/slideshow",
-   icon: TvMinimalPlay,
+    title: "Edit Slideshow",
+    url: "/dashboard/slideshow",
+    icon: TvMinimalPlay,
   },
   {
-   title: "Edit Teks Berjalan",
-   url: "/dashboard/running-text",
-   icon: RectangleEllipsis,
+    title: "Edit Teks Berjalan",
+    url: "/dashboard/running-text",
+    icon: RectangleEllipsis,
   },
- ];
+  ];
 </script>
- 
+
 <Sidebar.Root>
   <Sidebar.Header>
     <Sidebar.Menu>

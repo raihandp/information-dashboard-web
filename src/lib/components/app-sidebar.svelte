@@ -1,59 +1,67 @@
 <script lang="ts">
- import CalendarIcon from "@lucide/svelte/icons/calendar";
- import HouseIcon from "@lucide/svelte/icons/house";
- import InboxIcon from "@lucide/svelte/icons/inbox";
- import SearchIcon from "@lucide/svelte/icons/search";
- import SettingsIcon from "@lucide/svelte/icons/settings";
- import * as Sidebar from "$lib/components/ui/sidebar/index.js";
+ 
+ import {HouseIcon,
+        SquarePen,
+        Tally1,
+        Tally2,
+        Tally3,
+        SquareMousePointer, 
+        TvMinimalPlay, 
+        RectangleEllipsis,
+        ChevronDown,
+          ChevronUp,
+        
+ } from "@lucide/svelte";
 
- import PlusIcon from "@lucide/svelte/icons/plus";
+ import * as Sidebar from "$lib/components/ui/sidebar/index.js";
  import * as DropdownMenu from "$lib/components/ui/dropdown-menu/index.js";
+
   
  // Menu items.
  const items = [
   {
    title: "Edit Banner 1",
    url: "/dashboard/banner-1",
-  //  icon: HouseIcon,
+   icon: Tally1,
   },
   {
    title: "Edit Banner 2",
    url: "/dashboard/banner-2",
-  //  icon: HouseIcon,
+   icon: Tally2,
   },
   {
    title: "Edit Banner 3",
    url: "/dashboard/banner-3",
-  //  icon: HouseIcon,
+   icon: Tally3
   },
   {
    title: "Edit Grup Tombol",
    url: "/dashboard/edit-button",
-  //  icon: HouseIcon,
+  //  icon: SquareMousePointer,
   },
   {
    title: "Edit Slideshow",
    url: "/dashboard/slideshow",
-  //  icon: HouseIcon,
+  //  icon: TvMinimalPlay,
   },
   {
    title: "Edit Teks Berjalan",
    url: "/dashboard/running-text",
-  //  icon: HouseIcon,
+  //  icon: RectangleEllipsis,
   },
  ];
 </script>
  
 <Sidebar.Root>
   <Sidebar.Header>
-    <!-- <Sidebar.Menu>
+    <Sidebar.Menu>
       <Sidebar.MenuItem>
         <DropdownMenu.Root>
           <DropdownMenu.Trigger>
             {#snippet child({ props })}
               <Sidebar.MenuButton {...props}>
-                Select Workspace
-                <ChevronDown class="ml-auto" />
+                Dashboard Web Lobby
+             
               </Sidebar.MenuButton>
             {/snippet}
           </DropdownMenu.Trigger>
@@ -67,12 +75,11 @@
           </DropdownMenu.Content>
         </DropdownMenu.Root>
       </Sidebar.MenuItem>
-    </Sidebar.Menu> -->
+    </Sidebar.Menu>
   </Sidebar.Header>
 
  <Sidebar.Content>
   <Sidebar.Group>
-   <Sidebar.GroupLabel>Application</Sidebar.GroupLabel>
    <Sidebar.GroupContent>
     <Sidebar.Menu>
      {#each items as item (item.title)}

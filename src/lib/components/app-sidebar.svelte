@@ -59,7 +59,7 @@
 <Sidebar.Root>
   <Sidebar.Header>
     <Sidebar.GroupLabel>
-      Akun
+      Dashboard Web Lobby
     </Sidebar.GroupLabel>
     <!-- <Sidebar.Menu>
       <Sidebar.MenuItem>

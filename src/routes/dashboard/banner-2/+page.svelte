@@ -4,12 +4,13 @@
     import * as Dialog from "$lib/components/ui/dialog/index.js";
 	import { SquarePen, CircleX } from "@lucide/svelte";
 </script>
+
 <!-- style="background-color: #FF8A00; text-align: center; color: white; padding: 10px" -->
-<div class="w-svh" >
+<div>
     <h2 style="font-size: 24px;">Edit Banner 2</h2>
 </div>
 
-<div class="content" style="width: 100%; margin:20px;">
+<div class="p-10 flex flex-col gap-6">
     <Card.Root>
         <Card.Content class="p-6">
             <div class="flex items-center justify-between space-x-4">
@@ -20,9 +21,11 @@
                 <div>
                     <Dialog.Root>
                         <Dialog.Trigger>
-                            <Button.Root variant="outline" size="icon" aria-label="Edit">
-                                <SquarePen class="h-4 w-4" />
-                            </Button.Root>
+                            {#snippet child({ props })}
+                                <Button.Root {...props} variant="outline" size="icon" aria-label="Edit">
+                                    <SquarePen class="h-4 w-4" />
+                                </Button.Root>
+                            {/snippet}
                         </Dialog.Trigger>
                         <Dialog.Content class="sm:max-w-[425px]">
                             <Dialog.Header>
@@ -31,16 +34,19 @@
                             
                             <div class="grid gap-4 py-4">
                                 <div class="grid grid-cols-4 items-center gap-4">
-                                    <label for="judul" class="text-right">Judul</label>
+                                    <label for="judul" class="text-right">Judul :</label>
                                     <input id="judul" class="col-span-3" style="border: 1px solid; border-radius:5px;" />
 
-                                    <label for="desc" class="text-right">Deskripsi</label>
+                                    <label for="desc" class="text-right">Deskripsi :</label>
                                     <input id="desc" class="col-span-3" style="border: 1px solid; border-radius:5px;" />
                                 </div>
                             </div>
-
                             <Dialog.Footer>
-                                <Button.Root type="submit">Simpan</Button.Root>
+                                <Dialog.Close>
+                                    {#snippet child({ props })}
+                                        <Button.Root {...props} type="submit">Simpan</Button.Root>
+                                    {/snippet}
+                                </Dialog.Close>
                             </Dialog.Footer>
                         </Dialog.Content>
                     </Dialog.Root>

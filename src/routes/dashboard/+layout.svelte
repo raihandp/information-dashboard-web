@@ -7,8 +7,10 @@
 
 <Sidebar.Provider>
     <AppSidebar />
-    <main>
+    <main class="w-full">
         <Sidebar.Trigger />
-        {@render children?.()}
+        <div class="p-4 md:p-6 lg:p-8">
+            {@render children?.()}
+        </div>
     </main>
 </Sidebar.Provider>

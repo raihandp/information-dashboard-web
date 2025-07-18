@@ -5,6 +5,9 @@
 	import { SquarePen, CircleX } from "@lucide/svelte";
 </script>
 
+<style>
+    
+</style>
 <!-- style="background-color: #FF8A00; text-align: center; color: white; padding: 10px" -->
 <div>
     <h2 style="font-size: 24px;">Edit Banner 2</h2>
@@ -33,12 +36,15 @@
                             </Dialog.Header>
                             
                             <div class="grid gap-4 py-4">
-                                <div class="grid grid-cols-4 items-center gap-4">
-                                    <label for="judul" class="text-right">Judul :</label>
-                                    <input id="judul" class="col-span-3" style="border: 1px solid; border-radius:5px;" />
-
-                                    <label for="desc" class="text-right">Deskripsi :</label>
-                                    <textarea id="desc" class="col-span-3 border rounded-md p-2" rows="4"></textarea>
+                                <div class="grid w-full gap-y-4">
+                                    <div>
+                                        <label for="judul" class="block text-sm font-medium mb-2">Judul :</label>
+                                        <input id="judul" class="w-full border rounded-md p-2" />
+                                    </div>
+                                    <div>
+                                        <label for="desc" class="block text-sm font-medium mb-2">Deskripsi :</label>
+                                        <textarea id="desc" class="w-full border rounded-md p-2" rows="4"></textarea>
+                                    </div>
                                 </div>
                             </div>
                             <Dialog.Footer>
@@ -56,8 +62,38 @@
     </Card.Root>
 
     <Card.Root>
-        <Card.Content class="p-6">
-            <div class="flex items-center justify-between space-x-4 h-50">
+        <Card.Content>
+            <div>
+                <table class="w-full border-collapse">
+                    <thead>
+                        <tr>
+                            <th>Nomor</th>
+                            <th>Foto</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1.</td>
+                            <td>Judul Foto 1</td>
+                        </tr>
+                        <tr>
+                            <td>2.</td>
+                            <td>Judul Foto 2</td>
+                        </tr>
+                        <tr>
+                            <td>3.</td>
+                            <td>Judul Foto 3</td>
+                        </tr>
+                        <tr>
+                            <td>4.</td>
+                            <td>Judul Foto 4</td>
+                        </tr>
+                        <tr>
+                            <td>5.</td>
+                            <td>Judul Foto 5</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </Card.Content>
     </Card.Root>

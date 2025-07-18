@@ -1,20 +1,19 @@
 <script lang="ts">
- 
- import {
-  HouseIcon,
-  SquarePen,
-  Tally1,
-  Tally2,
-  Tally3,
-  SquareMousePointer, 
-  TvMinimalPlay, 
-  RectangleEllipsis,
-  ChevronDown,
-  ChevronUp,
- } from "@lucide/svelte";
 
- import * as Sidebar from "$lib/components/ui/sidebar/index.js";
- import * as DropdownMenu from "$lib/components/ui/dropdown-menu/index.js";
+  import * as Sidebar from "$lib/components/ui/sidebar/index.js";
+  import * as DropdownMenu from "$lib/components/ui/dropdown-menu/index.js";
+  import {
+    HouseIcon,
+    SquarePen,
+    Tally1,
+    Tally2,
+    Tally3,
+    SquareMousePointer, 
+    TvMinimalPlay, 
+    RectangleEllipsis,
+    ChevronDown,
+    ChevronUp,
+  } from "@lucide/svelte";
 
  // Menu items.
   const items = [
@@ -59,7 +58,10 @@
 
 <Sidebar.Root>
   <Sidebar.Header>
-    <Sidebar.Menu>
+    <Sidebar.GroupLabel>
+      Akun
+    </Sidebar.GroupLabel>
+    <!-- <Sidebar.Menu>
       <Sidebar.MenuItem>
         <DropdownMenu.Root>
           <DropdownMenu.Trigger>
@@ -71,10 +73,10 @@
           </DropdownMenu.Trigger>
         </DropdownMenu.Root>
       </Sidebar.MenuItem>
-    </Sidebar.Menu>
+    </Sidebar.Menu> -->
   </Sidebar.Header>
 
-  <Sidebar.Content>
+  <Sidebar.Content style="margin: 10px">
     <Sidebar.Group>
     <Sidebar.GroupContent>
       <Sidebar.Menu>

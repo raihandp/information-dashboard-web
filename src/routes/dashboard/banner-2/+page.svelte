@@ -38,7 +38,7 @@
                                     <input id="judul" class="col-span-3" style="border: 1px solid; border-radius:5px;" />
 
                                     <label for="desc" class="text-right">Deskripsi :</label>
-                                    <input id="desc" class="col-span-3" style="border: 1px solid; border-radius:5px;" />
+                                    <textarea id="desc" class="col-span-3 border rounded-md p-2" rows="4"></textarea>
                                 </div>
                             </div>
                             <Dialog.Footer>

@@ -25,32 +25,32 @@
 
   {
     title: "Edit Banner 1",
-    url: "/dashboard/banner-1",
+    url: "/dashboard/1-profil-fik",
     icon: Tally1,
   },
   {
     title: "Edit Banner 2",
-    url: "/dashboard/banner-2",
+    url: "/dashboard/2-presma",
     icon: Tally2,
   },
   {
     title: "Edit Banner 3",
-    url: "/dashboard/banner-3",
+    url: "/dashboard/3-qr-code-layanan",
     icon: Tally3
   },
   {
     title: "Edit Grup Tombol",
-    url: "/dashboard/edit-button",
+    url: "/dashboard/4-edit-button",
     icon: SquareMousePointer,
   },
   {
     title: "Edit Slideshow",
-    url: "/dashboard/slideshow",
+    url: "/dashboard/5-slideshow",
     icon: TvMinimalPlay,
   },
   {
     title: "Edit Teks Berjalan",
-    url: "/dashboard/running-text",
+    url: "/dashboard/6-running-text",
     icon: RectangleEllipsis,
   },
   ];

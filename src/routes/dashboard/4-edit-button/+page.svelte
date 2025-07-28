@@ -14,9 +14,10 @@
 	// Di aplikasi nyata, data ini akan datang dari database/API.
 	// Untuk contoh ini, kita gunakan array biasa.
 	let photos = [
-		{ id: 1, title: 'Judul Foto 1', imageSrc: 'https://via.placeholder.com/400x200?text=Foto+1' },
-		{ id: 2, title: 'Judul Foto 2', imageSrc: 'https://via.placeholder.com/400x200?text=Foto+2' },
-		{ id: 3, title: 'Judul Foto 3', imageSrc: 'https://via.placeholder.com/400x200?text=Foto+3' }
+		{ id: 1, title: 'ReadZone', imageSrc: 'https://via.placeholder.com/400x200?text=Foto+1' },
+		{ id: 2, title: 'Kalender Akademik', imageSrc: 'https://via.placeholder.com/400x200?text=Foto+2' },
+		{ id: 3, title: 'POB FIK UPNVJ', imageSrc: 'https://via.placeholder.com/400x200?text=Foto+3' },
+		{ id: 4, title: 'Statistik FIK UPNVJ', imageSrc: 'https://via.placeholder.com/400x200?text=Foto+4' }
 	];
 
 	// State untuk mengontrol modal mana yang aktif
@@ -107,7 +108,7 @@
 </style>
 <!-- style="background-color: #FF8A00; text-align: center; color: white; padding: 10px" -->
 <div>
-    <h2 style="font-size: 24px;">Edit Banner 2</h2>
+    <h2 style="font-size: 24px;">Edit Tombol</h2>
 </div>
 
 <div class="p-10 flex flex-col gap-6">
@@ -115,8 +116,8 @@
         <Card.Content class="p-6">
             <div class="flex items-center justify-between space-x-4">
                 <div class="flex-grow">
-                    <h3 class="font-semibold tracking-tight">Judul</h3>
-                    <p class="text-sm text-muted-foreground">Deskripsi</p>
+                    <h3 class="font-semibold tracking-tight">Menu Layanan FIK</h3>
+                    <p class="text-sm text-muted-foreground">Klik salah satu menu di bawah ini untuk melihat lebih lanjut</p>
                 </div>
                 <div>
                     <Dialog.Root>
@@ -174,9 +175,6 @@
 					<Table.Cell class="font-medium">{photo.title}</Table.Cell>
 					<Table.Cell class="text-right">
 						<div class="flex justify-end gap-2">
-							<Button.Root variant="outline" size="icon" onclick={() => openModal('view', photo)}>
-								<Eye class="h-4 w-4" />
-							</Button.Root>
 							<Button.Root variant="outline" size="icon" class="bg-green-500 hover:bg-green-600 text-white" onclick={() => openModal('edit', photo)}>
 								<SquarePen class="h-4 w-4" />
 							</Button.Root>
@@ -191,7 +189,7 @@
 	</Table.Root>
 
 	<div class="flex justify-end">
-		<Button.Root class="bg-[#FF8A00] hover:bg-[#E07B00]" onclick={() => openModal('add')}>
+		<Button.Root class="mr-2 bg-[#FF8A00] hover:bg-[#E07B00]" onclick={() => openModal('add')}>
 			<Plus class="mr-2 h-4 w-4" /> Tambah
 		</Button.Root>
 	</div>

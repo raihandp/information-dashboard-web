@@ -2,6 +2,7 @@
 	import * as Card from "$lib/components/ui/card/index.js";
 	import * as Button from "$lib/components/ui/button/index.js";
     import * as Dialog from "$lib/components/ui/dialog/index.js";
+	import { AspectRatio } from "$lib/components/ui/aspect-ratio/index.js";
 	import { SquarePen, CircleX, Image } from "@lucide/svelte";
 
     import * as Table from '$lib/components/ui/table/index.js';
@@ -185,7 +186,9 @@
 				</div>
 
 				<div class="grid place-items-center">
-					<Image class="p-6 w-100 h-100" />
+					<AspectRatio ratio={8 / 5}>
+						<Image/>
+					</AspectRatio>
 				</div>
 			</Card.Content>
 		</Card.Root>
@@ -230,16 +233,18 @@
 				</div>
 
 				<div class="p-6">
-					<iframe 
-						width=100%
-						height=100%
-						src="https://www.youtube.com/embed/eaLfH6a4BWE?autoplay=1&loop=1&mute=1&controls=0si=UiuqwkRtdghH000i" 
-						title="Video Profil FIK UPNVJ"
-						frameborder="0" 
-						allow= "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-						referrerpolicy="strict-origin-when-cross-origin" 
-						allowfullscreen>
-					</iframe>
+					<AspectRatio ratio={8 / 5}>
+						<iframe 
+							width=100%
+							height=100%
+							src="https://www.youtube.com/embed/eaLfH6a4BWE?autoplay=1&loop=1&mute=1&controls=0si=UiuqwkRtdghH000i" 
+							title="Video Profil FIK UPNVJ"
+							frameborder="0" 
+							allow= "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+							referrerpolicy="strict-origin-when-cross-origin" 
+							allowfullscreen>
+						</iframe>
+					</AspectRatio>
 				</div>
 			</Card.Content>
 		</Card.Root>

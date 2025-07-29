@@ -129,7 +129,7 @@
                         </Dialog.Trigger>
                         <Dialog.Content class="sm:max-w-[425px]">
                             <Dialog.Header>
-                                <Dialog.Title>Edit</Dialog.Title>
+                                <Dialog.Title>Edit Judul Banner</Dialog.Title>
                             </Dialog.Header>
                             
                             <div class="grid gap-4 py-4">

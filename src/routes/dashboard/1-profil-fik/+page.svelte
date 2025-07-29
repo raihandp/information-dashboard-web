@@ -2,7 +2,7 @@
 	import * as Card from "$lib/components/ui/card/index.js";
 	import * as Button from "$lib/components/ui/button/index.js";
     import * as Dialog from "$lib/components/ui/dialog/index.js";
-	import { SquarePen, CircleX } from "@lucide/svelte";
+	import { SquarePen, CircleX, Image } from "@lucide/svelte";
 
     import * as Table from '$lib/components/ui/table/index.js';
 	import * as AlertDialog from '$lib/components/ui/alert-dialog/index.js';
@@ -115,7 +115,7 @@
                         </Dialog.Trigger>
                         <Dialog.Content class="sm:max-w-[425px]">
                             <Dialog.Header>
-                                <Dialog.Title>Edit</Dialog.Title>
+                                <Dialog.Title>Edit Judul Banner</Dialog.Title>
                             </Dialog.Header>
                             
                             <div class="grid gap-4 py-4">
@@ -144,110 +144,104 @@
         </Card.Content>
     </Card.Root>
 
-    <!-- <div class="p-4 sm:p-6 md:p-10"></div> -->
-    <Table.Root class="mt-6">
-		<!-- <Table.Header class="bg-[#FF8A00]">
-			<Table.Row class="text-center">
-				<Table.Head class="w-[50px] text-white">No.</Table.Head>
-				<Table.Head class="text-white">Foto</Table.Head>
-				<Table.Head class="w-[150px] text-right text-white">Aksi</Table.Head>
-			</Table.Row>
-		</Table.Header> -->
-		<Table.Body>
-			{#each photos as photo, i}
-				<Table.Row>
-					<Table.Cell>{i + 1}.</Table.Cell>
-					<Table.Cell class="font-medium">{photo.title}</Table.Cell>
-					<Table.Cell class="text-right">
-						<div class="flex justify-end gap-2">
-							<Button.Root variant="outline" size="icon" onclick={() => openModal('view', photo)}>
-								<Eye class="h-4 w-4" />
-							</Button.Root>
-							<Button.Root variant="outline" size="icon" class="bg-green-500 hover:bg-green-600 text-white" onclick={() => openModal('edit', photo)}>
-								<SquarePen class="h-4 w-4" />
-							</Button.Root>
-							<Button.Root variant="destructive" size="icon" onclick={() => openModal('delete', photo)}>
-								<Trash2 class="h-4 w-4" />
-							</Button.Root>
-						</div>
-					</Table.Cell>
-				</Table.Row>
-			{/each}
-		</Table.Body>
-	</Table.Root>
+	<div class="grid grid-cols-2 gap-6">
+		<Card.Root>
+			<Card.Content class="p-6">
+				<div class="flex items-center justify-between space-x-4">
+					<div class="flex-grow">
+						<h3 class="font-semibold tracking-tight">Visi dan Misi FIK</h3>
+						<p class="text-sm text-muted-foreground">Kelola visi dan misi FIK UPNVJ</p>
+					</div>
+					<div>
+						<Dialog.Root>
+							<Dialog.Trigger>
+								<Button.Root variant="outline" size="icon">
+									<SquarePen class="h-4 w-4" />
+								</Button.Root>
+							</Dialog.Trigger>
+							<Dialog.Content class="sm:max-w-[425px]">
+								<Dialog.Header>
+									<Dialog.Title>Edit Poster</Dialog.Title>
+								</Dialog.Header>
+								
+								<div class="grid gap-4 py-4">
+									<div class="grid w-full gap-y-4">
+										<div>
+											<label for="desc" class="block text-sm font-medium mb-2">Upload Poster :</label>
+											<textarea id="desc" class="w-full border rounded-md p-2" rows="4"></textarea>
+										</div>
+									</div>
+								</div>
+								<Dialog.Footer>
+									<Dialog.Close>
+										{#snippet child({ props })}
+											<Button.Root {...props} type="submit">Simpan</Button.Root>
+										{/snippet}
+									</Dialog.Close>
+								</Dialog.Footer>
+							</Dialog.Content>
+						</Dialog.Root>
+					</div>
+				</div>
 
-	<div class="grid justify-center">
-		<iframe 
-			width="560" 
-			height="315" 
-			src="https://www.youtube.com/embed/eaLfH6a4BWE?autoplay=1&loop=1&mute=1&controls=0si=UiuqwkRtdghH000i" 
-			title="Video Profil FIK UPNVJ"
-			frameborder="0" 
-			allow= "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-			referrerpolicy="strict-origin-when-cross-origin" 
-			allowfullscreen>
-		</iframe>
+				<div class="grid place-items-center">
+					<Image class="p-6 w-100 h-100" />
+				</div>
+			</Card.Content>
+		</Card.Root>
+
+		<Card.Root>
+			<Card.Content class="p-6">
+				<div class="flex items-center justify-between space-x-4">
+					<div class="flex-grow">
+						<h3 class="font-semibold tracking-tight">Company Profile FIK</h3>
+						<p class="text-sm text-muted-foreground">Kelola video company profile FIK UPNVJ</p>
+					</div>
+					<div>
+						<Dialog.Root>
+							<Dialog.Trigger>
+								<Button.Root variant="outline" size="icon">
+									<SquarePen class="h-4 w-4" />
+								</Button.Root>
+							</Dialog.Trigger>
+							<Dialog.Content class="sm:max-w-[425px]">
+								<Dialog.Header>
+									<Dialog.Title>Edit Video</Dialog.Title>
+								</Dialog.Header>
+								
+								<div class="grid gap-4 py-4">
+									<div class="grid w-full gap-y-4">
+										<div>
+											<label for="judul" class="block text-sm font-medium mb-2">Link Youtube :</label>
+											<input id="judul" placeholder="Masukkan link youtube video profil fakultas" class="w-full border rounded-md p-2" />
+										</div>
+									</div>
+								</div>
+								<Dialog.Footer>
+									<Dialog.Close>
+										{#snippet child({ props })}
+											<Button.Root {...props} type="submit">Simpan</Button.Root>
+										{/snippet}
+									</Dialog.Close>
+								</Dialog.Footer>
+							</Dialog.Content>
+						</Dialog.Root>
+					</div>
+				</div>
+
+				<div class="p-6">
+					<iframe 
+						width=100%
+						height=100%
+						src="https://www.youtube.com/embed/eaLfH6a4BWE?autoplay=1&loop=1&mute=1&controls=0si=UiuqwkRtdghH000i" 
+						title="Video Profil FIK UPNVJ"
+						frameborder="0" 
+						allow= "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+						referrerpolicy="strict-origin-when-cross-origin" 
+						allowfullscreen>
+					</iframe>
+				</div>
+			</Card.Content>
+		</Card.Root>
 	</div>
 </div>
-
-
-<Dialog.Root bind:open={isDialogOpen} onOpenChange={(open) => !open && closeModal()}>
-	<Dialog.Content>
-		<Dialog.Header>
-			{#if activeModal === 'edit'}
-				<Dialog.Title>Edit Foto</Dialog.Title>
-			{:else if activeModal === 'view'}
-				<Dialog.Title>{selectedPhoto?.title}</Dialog.Title>
-			{/if}
-		</Dialog.Header>
-
-		{#if activeModal === 'view'}
-			<img src={selectedPhoto?.imageSrc} alt={selectedPhoto?.title} class="mt-4 w-full rounded-md" />
-			<Dialog.Footer>
-				<Button.Root variant="outline" onclick={closeModal}>Tutup</Button.Root>
-			</Dialog.Footer>
-		{/if}
-
-		{#if activeModal === 'edit'}
-			<div class="grid gap-6 py-4">
-				<div>
-					<Label for="judul">Judul</Label>
-					<Input id="judul" bind:value={formTitle} placeholder={activeModal === 'edit' ? selectedPhoto?.title : 'Masukkan judul foto'} class={activeModal === 'edit' ? 'placeholder:opacity-50' : ''} />
-				</div>
-				<div>
-					<Label>Ubah Foto</Label>
-					<div class="mt-2 flex items-center gap-4">
-						{#if activeModal === 'edit'}
-							<img src={selectedPhoto?.imageSrc} alt="Current" class="h-20 w-20 rounded-md border object-cover" />
-						{/if}
-						<Label for="file-upload" class="flex h-20 flex-1 cursor-pointer flex-col items-center justify-center rounded-md border-2 border-dashed">
-							<Upload class="h-6 w-6 text-muted-foreground" />
-							<span class="text-sm text-muted-foreground">Upload File</span>
-						</Label>
-						<Input id="file-upload" type="file" class="hidden" accept=".jpg, .jpeg, .png" onchange={handleFileChange} />
-					</div>
-					{#if formFile}
-						<p class="mt-2 text-sm text-muted-foreground">File dipilih: {formFile.name}</p>
-					{/if}
-				</div>
-			</div>
-			<Dialog.Footer>
-				<Button.Root onclick={handleSave}>Simpan</Button.Root>
-			</Dialog.Footer>
-		{/if}
-	</Dialog.Content>
-</Dialog.Root>
-
-<AlertDialog.Root bind:open={isAlertOpen} onOpenChange={(open) => !open && closeModal()}>	<AlertDialog.Content>
-		<AlertDialog.Header>
-			<AlertDialog.Title>Hapus</AlertDialog.Title>
-			<AlertDialog.Description>
-				Apakah anda ingin menghapus foto ini? Aksi ini tidak dapat dibatalkan.
-			</AlertDialog.Description>
-		</AlertDialog.Header>
-		<AlertDialog.Footer>
-			<AlertDialog.Cancel>Tidak</AlertDialog.Cancel>
-			<AlertDialog.Action onclick={handleDelete} class="bg-red-600 hover:bg-red-700">Ya</AlertDialog.Action>
-		</AlertDialog.Footer>
-	</AlertDialog.Content>
-</AlertDialog.Root>

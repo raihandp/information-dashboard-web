@@ -158,7 +158,6 @@
         </Card.Content>
     </Card.Root>
 
-    <!-- <div class="p-4 sm:p-6 md:p-10"></div> -->
     <Table.Root class="mt-6">
 		<!-- <Table.Header class="bg-[#FF8A00]">
 			<Table.Row class="text-center">

@@ -163,8 +163,11 @@
 								<div class="grid gap-4 py-4">
 									<div class="grid w-full gap-y-4">
 										<div>
-											<label for="desc" class="block text-sm font-medium mb-2">Upload Poster :</label>
-											<textarea id="desc" class="w-full border rounded-md p-2" rows="4"></textarea>
+											<label for="file-upload" class="flex h-20 flex-1 cursor-pointer flex-col items-center justify-center rounded-md border-2 border-dashed">
+												<upload class="h-6 w-6 text-muted-foreground"></upload>
+												<span class="text-sm text-muted-foreground">Upload File</span>
+											</label>
+											<input id="file-upload" type="file" class="hidden" accept=".jpg, .jpeg, .png" onchange={handleFileChange} />
 										</div>
 									</div>
 								</div>

@@ -178,9 +178,9 @@
 							<Button.Root variant="outline" size="icon" class="bg-green-500 hover:bg-green-600 text-white" onclick={() => openModal('edit', photo)}>
 								<SquarePen class="h-4 w-4" />
 							</Button.Root>
-							<Button.Root variant="destructive" size="icon" onclick={() => openModal('delete', photo)}>
+							<!-- <Button.Root variant="destructive" size="icon" onclick={() => openModal('delete', photo)}>
 								<Trash2 class="h-4 w-4" />
-							</Button.Root>
+							</Button.Root> -->
 						</div>
 					</Table.Cell>
 				</Table.Row>
@@ -188,11 +188,11 @@
 		</Table.Body>
 	</Table.Root>
 
-	<div class="flex justify-end">
+	<!-- <div class="flex justify-end">
 		<Button.Root class="mr-2 bg-[#FF8A00] hover:bg-[#E07B00]" onclick={() => openModal('add')}>
 			<Plus class="mr-2 h-4 w-4" /> Tambah
 		</Button.Root>
-	</div>
+	</div> -->
 </div>
 
 

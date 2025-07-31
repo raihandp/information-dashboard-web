@@ -17,12 +17,6 @@
 
  // Menu items.
   const items = [
-  // {
-  //  title: "Halaman Depan",
-  //  url: "/",
-  //  icon: HouseIcon,
-  // },
-
   {
     title: "Edit Banner 1",
     url: "/dashboard/1-profil-fik",
@@ -53,11 +47,11 @@
     url: "/dashboard/6-running-text",
     icon: RectangleEllipsis,
   },
-  {
-    title: "Testing Page",
-    url: "/dashboard/tests",
-    icon: RectangleEllipsis,
-  },
+  // {
+  //   title: "Testing Page",
+  //   url: "/dashboard/tests",
+  //   icon: RectangleEllipsis,
+  // },
   ];
 </script>
 
@@ -66,19 +60,6 @@
     <Sidebar.GroupLabel>
       Dashboard Web Lobby
     </Sidebar.GroupLabel>
-    <!-- <Sidebar.Menu>
-      <Sidebar.MenuItem>
-        <DropdownMenu.Root>
-          <DropdownMenu.Trigger>
-            {#snippet child({ props })}
-              <Sidebar.MenuButton {...props}>
-                Dashboard Web Lobby
-              </Sidebar.MenuButton>
-            {/snippet}
-          </DropdownMenu.Trigger>
-        </DropdownMenu.Root>
-      </Sidebar.MenuItem>
-    </Sidebar.Menu> -->
   </Sidebar.Header>
 
   <Sidebar.Content style="margin: 10px">

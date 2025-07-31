@@ -5,12 +5,6 @@
 	import { AspectRatio } from "$lib/components/ui/aspect-ratio/index.js";
 	import { SquarePen, CircleX, Image } from "@lucide/svelte";
 
-    import * as Table from '$lib/components/ui/table/index.js';
-	import * as AlertDialog from '$lib/components/ui/alert-dialog/index.js';
-	import { Input } from '$lib/components/ui/input/index.js';
-	import { Label } from '$lib/components/ui/label/index.js';
-	import { Eye, Trash2, Plus, Upload } from "@lucide/svelte";
-
     // --- 1. STATE MANAGEMENT ---
 	// Di aplikasi nyata, data ini akan datang dari database/API.
 	// Untuk contoh ini, kita gunakan array biasa.
@@ -123,7 +117,8 @@
                                 <div class="grid w-full gap-y-4">
                                     <div>
                                         <label for="judul" class="block text-sm font-medium mb-2">Judul :</label>
-                                        <input id="judul" class="w-full border rounded-md p-2" />
+                                    
+									<input id="judul" placeholder="Masukkan Judul yang di inginkan" class="w-full border rounded-md p-2" />
                                     </div>
                                     <div>
                                         <label for="desc" class="block text-sm font-medium mb-2">Deskripsi :</label>
@@ -186,9 +181,9 @@
 				</div>
 
 				<div class="grid place-items-center">
-					<AspectRatio ratio={8 / 5}>
-						<Image/>
-					</AspectRatio>
+					<!-- <AspectRatio ratio={8 / 5}> -->
+					<Image class="p-6 w-100 h-100" />
+					<!-- </AspectRatio> -->
 				</div>
 			</Card.Content>
 		</Card.Root>

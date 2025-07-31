@@ -227,7 +227,7 @@
 					<Label>Ubah Foto</Label>
 					<div class="mt-2 flex items-center gap-4">
 						{#if activeModal === 'edit'}
-							<img src={selectedPhoto?.imageSrc} alt="Current" class="h-20 w-20 rounded-md border object-cover" />
+							<img src={selectedPhoto?.imageSrc} alt="Foto saat ini" class="h-20 w-20 rounded-md border object-cover" />
 						{/if}
 						<Label for="file-upload" class="flex h-20 flex-1 cursor-pointer flex-col items-center justify-center rounded-md border-2 border-dashed">
 							<Upload class="h-6 w-6 text-muted-foreground" />

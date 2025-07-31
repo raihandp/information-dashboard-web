@@ -220,11 +220,11 @@
 		{#if activeModal === 'add' || activeModal === 'edit'}
 			<div class="grid gap-6 py-4">
 				<div>
-					<Label for="judul">Judul</Label>
+					<label for="judul" class="block text-sm font-medium mb-2">Judul :</label>
 					<Input id="judul" bind:value={formTitle} placeholder={activeModal === 'edit' ? selectedPhoto?.title : 'Masukkan judul foto'} class={activeModal === 'edit' ? 'placeholder:opacity-50' : ''} />
 				</div>
 				<div>
-					<Label>Ubah Foto</Label>
+                    <label for="judul" class="block text-sm font-medium mb-2">Ubah Foto :</label>
 					<div class="mt-2 flex items-center gap-4">
 						{#if activeModal === 'edit'}
 							<img src={selectedPhoto?.imageSrc} alt="Foto saat ini" class="h-20 w-20 rounded-md border object-cover" />

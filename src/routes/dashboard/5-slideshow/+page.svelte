@@ -147,6 +147,43 @@
 		<Button.Root class="mr-2 bg-[#FF8A00] hover:bg-[#E07B00]" onclick={() => openModal('add')}>
 			<Plus class="mr-2 h-4 w-4" /> Tambah
 		</Button.Root>
+				<Dialog.Root>
+			<Dialog.Trigger>
+				<Button.Root class="mr-2 bg-[#FF8A00] hover:bg-[#E07B00]" >
+					<Plus class="mr-2 h-4 w-4" /> Tambah
+				</Button.Root>
+			</Dialog.Trigger>
+			<Dialog.Content class="sm:max-w-[425px]">
+				<Dialog.Header>
+					<Dialog.Title>Tambah Foto</Dialog.Title>
+				</Dialog.Header>
+				
+				<div class="grid gap-6 py-4">
+					<div>
+						<Label for="judul" class="block text-sm font-medium mb-2">Judul :</Label>
+						<Input id="judul" bind:value={formTitle} placeholder='Masukkan judul foto' />
+					</div>
+					<div>
+						<Label for="upload" class="block text-sm font-medium mb-2">Upload Foto :</Label>
+						<div class="mt-2 flex items-center gap-4">
+							<Label for="file-upload" class="flex h-20 flex-1 cursor-pointer flex-col items-center justify-center rounded-md border-2 border-dashed">
+								<Upload class="h-6 w-6 text-muted-foreground" />
+								<span class="text-sm text-muted-foreground">Silahkan upload di sini</span>
+							</Label>
+							<Input id="file-upload" type="file" class="hidden" accept=".jpg, .jpeg, .png" onchange={handleFileChange} />
+						</div>
+						{#if formFile}
+							<p class="mt-2 text-sm text-muted-foreground">File dipilih: {formFile.name}</p>
+						{/if}
+					</div>
+				</div>
+				<Dialog.Footer>
+					<Dialog.Close>
+							<Button.Root type="submit">Simpan</Button.Root>
+					</Dialog.Close>
+				</Dialog.Footer>
+			</Dialog.Content>
+		</Dialog.Root>
 	</div>
 </div>
 

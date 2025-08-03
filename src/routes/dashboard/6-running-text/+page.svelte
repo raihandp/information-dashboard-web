@@ -1,8 +1,7 @@
 <script lang="ts">
-	import * as Card from "$lib/components/ui/card/index.js";
 	import * as Button from "$lib/components/ui/button/index.js";
     import * as Dialog from "$lib/components/ui/dialog/index.js";
-	import { SquarePen, CircleX } from "@lucide/svelte";
+	import { SquarePen } from "@lucide/svelte";
 
     import * as Table from '$lib/components/ui/table/index.js';
 	import * as AlertDialog from '$lib/components/ui/alert-dialog/index.js';
@@ -58,7 +57,7 @@
 			const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png'];
 			if (!allowedTypes.includes(file.type)) {
 				alert('Format file tidak didukung! Harap unggah JPG, JPEG, atau PNG.');
-				target.value = ''; // Reset input file
+				target.value = ''; // Untuk reset input file
 				return;
 			}
 			formFile = file;
@@ -102,24 +101,12 @@
 	}
 </script>
 
-<style>
-    
-</style>
-<!-- style="background-color: #FF8A00; text-align: center; color: white; padding: 10px" -->
 <div>
     <h2 style="font-size: 24px;">Edit Teks Berjalan</h2>
 </div>
 
 <div class="p-10 flex flex-col gap-6">
-    <!-- <div class="p-4 sm:p-6 md:p-10"></div> -->
     <Table.Root>
-		<!-- <Table.Header class="bg-[#FF8A00]">
-			<Table.Row class="text-center">
-				<Table.Head class="w-[50px] text-white">No.</Table.Head>
-				<Table.Head class="text-white">Foto</Table.Head>
-				<Table.Head class="w-[150px] text-right text-white">Aksi</Table.Head>
-			</Table.Row>
-		</Table.Header> -->
 		<Table.Body>
 			{#each photos as photo, i}
 				<Table.Row>
@@ -129,7 +116,7 @@
 						<div class="flex justify-end gap-2">
 							<Dialog.Root>
 								<Dialog.Trigger>
-									<Button.Root variant="outline" size="icon" class="bg-green-500 hover:bg-green-600 text-white">
+									<Button.Root variant="outline" size="icon" class="bg-green-500 hover:bg-green-600 hover:text-white text-white">
 										<SquarePen class="h-4 w-4" />
 									</Button.Root>
 								</Dialog.Trigger>
@@ -152,16 +139,30 @@
 									</div>
 									<Dialog.Footer>
 										<Dialog.Close>
-											{#snippet child({ props })}
-												<Button.Root {...props} type="submit">Simpan</Button.Root>
-											{/snippet}
+												<Button.Root type="submit">Simpan</Button.Root>
 										</Dialog.Close>
 									</Dialog.Footer>
 								</Dialog.Content>
 							</Dialog.Root>
-							<Button.Root variant="destructive" size="icon" onclick={() => openModal('delete', photo)}>
-								<Trash2 class="h-4 w-4" />
-							</Button.Root>
+							<AlertDialog.Root>
+								<AlertDialog.Trigger>
+									<Button.Root variant="destructive" size="icon" class="text-white" >
+										<Trash2 class="h-4 w-4" />
+									</Button.Root>
+								</AlertDialog.Trigger>
+								<AlertDialog.Content>
+									<AlertDialog.Header>
+										<AlertDialog.Title>Hapus</AlertDialog.Title>
+										<AlertDialog.Description>
+											Apakah anda ingin menghapus foto ini? Aksi ini tidak dapat dibatalkan.
+										</AlertDialog.Description>
+									</AlertDialog.Header>
+									<AlertDialog.Footer>
+										<AlertDialog.Cancel>Tidak</AlertDialog.Cancel>
+										<AlertDialog.Action onclick={handleDelete} class="bg-red-600 hover:bg-red-700">Ya</AlertDialog.Action>
+									</AlertDialog.Footer>
+								</AlertDialog.Content>
+							</AlertDialog.Root>
 						</div>
 					</Table.Cell>
 				</Table.Row>
@@ -170,72 +171,33 @@
 	</Table.Root>
 
 	<div class="flex justify-end">
-		<Button.Root class="mr-2 bg-[#FF8A00] hover:bg-[#E07B00]" onclick={() => openModal('add')}>
-			<Plus class="mr-2 h-4 w-4" /> Tambah
-		</Button.Root>
+		<Dialog.Root>
+			<Dialog.Trigger>
+				<Button.Root class="mr-2 bg-[#FF8A00] hover:bg-[#E07B00]" >
+					<Plus class="mr-2 h-4 w-4" /> Tambah
+				</Button.Root>
+			</Dialog.Trigger>
+			<Dialog.Content class="sm:max-w-[425px]">
+				<Dialog.Header>
+					<Dialog.Title>Tambah Foto</Dialog.Title>
+				</Dialog.Header>
+				
+				<div class="grid gap-6 py-4">
+					<div>
+						<Label for="judul" class="block text-sm font-medium mb-2">Judul :</Label>
+						<Input id="judul" bind:value={formTitle} placeholder='Masukkan judul foto' />
+					</div>
+					<div>
+						<Label for="teks" class="block text-sm font-medium mb-2">Masukkan Teks :</Label>
+						<textarea id="teks" class="w-full border rounded-md p-2" rows="4"></textarea>
+					</div>
+				</div>
+				<Dialog.Footer>
+					<Dialog.Close>
+							<Button.Root type="submit">Simpan</Button.Root>
+					</Dialog.Close>
+				</Dialog.Footer>
+			</Dialog.Content>
+		</Dialog.Root>
 	</div>
 </div>
-
-
-<Dialog.Root bind:open={isDialogOpen} onOpenChange={(open) => !open && closeModal()}>
-	<Dialog.Content>
-		<Dialog.Header>
-			{#if activeModal === 'add'}
-				<Dialog.Title>Tambah Foto</Dialog.Title>
-			{:else if activeModal === 'edit'}
-				<Dialog.Title>Edit Foto</Dialog.Title>
-			{:else if activeModal === 'view'}
-				<Dialog.Title>{selectedPhoto?.title}</Dialog.Title>
-			{/if}
-		</Dialog.Header>
-
-		{#if activeModal === 'view'}
-			<img src={selectedPhoto?.imageSrc} alt={selectedPhoto?.title} class="mt-4 w-full rounded-md" />
-			<Dialog.Footer>
-				<Button.Root variant="outline" onclick={closeModal}>Tutup</Button.Root>
-			</Dialog.Footer>
-		{/if}
-
-		{#if activeModal === 'add' || activeModal === 'edit'}
-			<div class="grid gap-6 py-4">
-				<div>
-					<Label for="judul">Judul</Label>
-					<Input id="judul" bind:value={formTitle} placeholder={activeModal === 'edit' ? selectedPhoto?.title : 'Masukkan judul foto'} class={activeModal === 'edit' ? 'placeholder:opacity-50' : ''} />
-				</div>
-				<div>
-					<Label>Ubah Foto</Label>
-					<div class="mt-2 flex items-center gap-4">
-						{#if activeModal === 'edit'}
-							<img src={selectedPhoto?.imageSrc} alt="Current" class="h-20 w-20 rounded-md border object-cover" />
-						{/if}
-						<Label for="file-upload" class="flex h-20 flex-1 cursor-pointer flex-col items-center justify-center rounded-md border-2 border-dashed">
-							<Upload class="h-6 w-6 text-muted-foreground" />
-							<span class="text-sm text-muted-foreground">Upload File</span>
-						</Label>
-						<Input id="file-upload" type="file" class="hidden" accept=".jpg, .jpeg, .png" onchange={handleFileChange} />
-					</div>
-					{#if formFile}
-						<p class="mt-2 text-sm text-muted-foreground">File dipilih: {formFile.name}</p>
-					{/if}
-				</div>
-			</div>
-			<Dialog.Footer>
-				<Button.Root onclick={handleSave}>Simpan</Button.Root>
-			</Dialog.Footer>
-		{/if}
-	</Dialog.Content>
-</Dialog.Root>
-
-<AlertDialog.Root bind:open={isAlertOpen} onOpenChange={(open) => !open && closeModal()}>	<AlertDialog.Content>
-		<AlertDialog.Header>
-			<AlertDialog.Title>Hapus</AlertDialog.Title>
-			<AlertDialog.Description>
-				Apakah anda ingin menghapus foto ini? Aksi ini tidak dapat dibatalkan.
-			</AlertDialog.Description>
-		</AlertDialog.Header>
-		<AlertDialog.Footer>
-			<AlertDialog.Cancel>Tidak</AlertDialog.Cancel>
-			<AlertDialog.Action onclick={handleDelete} class="bg-red-600 hover:bg-red-700">Ya</AlertDialog.Action>
-		</AlertDialog.Footer>
-	</AlertDialog.Content>
-</AlertDialog.Root>

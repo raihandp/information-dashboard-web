@@ -127,12 +127,38 @@
 					<Table.Cell class="font-medium">{photo.title}</Table.Cell>
 					<Table.Cell class="text-right">
 						<div class="flex justify-end gap-2">
-							<Button.Root variant="outline" size="icon" onclick={() => openModal('view', photo)}>
-								<Eye class="h-4 w-4" />
-							</Button.Root>
-							<Button.Root variant="outline" size="icon" class="bg-green-500 hover:bg-green-600 text-white" onclick={() => openModal('edit', photo)}>
-								<SquarePen class="h-4 w-4" />
-							</Button.Root>
+							<Dialog.Root>
+								<Dialog.Trigger>
+									<Button.Root variant="outline" size="icon" class="bg-green-500 hover:bg-green-600 text-white">
+										<SquarePen class="h-4 w-4" />
+									</Button.Root>
+								</Dialog.Trigger>
+								<Dialog.Content class="sm:max-w-[425px]">
+									<Dialog.Header>
+										<Dialog.Title>Edit Teks</Dialog.Title>
+									</Dialog.Header>
+									
+									<div class="grid gap-4 py-4">
+										<div class="grid w-full gap-y-4">
+											<div>
+												<label for="judul" class="block text-sm font-medium mb-2">Judul :</label>
+												<input id="judul" class="w-full border rounded-md p-2" />
+											</div>
+											<div>
+												<label for="teks" class="block text-sm font-medium mb-2">Masukkan Teks :</label>
+												<textarea id="teks" class="w-full border rounded-md p-2" rows="4"></textarea>
+											</div>
+										</div>
+									</div>
+									<Dialog.Footer>
+										<Dialog.Close>
+											{#snippet child({ props })}
+												<Button.Root {...props} type="submit">Simpan</Button.Root>
+											{/snippet}
+										</Dialog.Close>
+									</Dialog.Footer>
+								</Dialog.Content>
+							</Dialog.Root>
 							<Button.Root variant="destructive" size="icon" onclick={() => openModal('delete', photo)}>
 								<Trash2 class="h-4 w-4" />
 							</Button.Root>

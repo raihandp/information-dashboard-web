@@ -2,6 +2,7 @@
 	import * as Card from "$lib/components/ui/card/index.js";
 	import * as Button from "$lib/components/ui/button/index.js";
     import * as Dialog from "$lib/components/ui/dialog/index.js";
+	import { AspectRatio } from "$lib/components/ui/aspect-ratio/index.js";
 	import { SquarePen, CircleX, Image } from "@lucide/svelte";
 
     import * as Table from '$lib/components/ui/table/index.js';
@@ -14,11 +15,13 @@
 	// Di aplikasi nyata, data ini akan datang dari database/API.
 	// Untuk contoh ini, kita gunakan array biasa.
 	let photos = [
-		{ id: 1, title: 'Nama Foto', imageSrc: 'https://via.placeholder.com/400x200?text=Foto+1' },
+		{ id: 1, title: 'Judul Foto 1', imageSrc: 'https://via.placeholder.com/400x200?text=Foto+1' },
+		{ id: 2, title: 'Judul Foto 2', imageSrc: 'https://via.placeholder.com/400x200?text=Foto+2' },
+		{ id: 3, title: 'Judul Foto 3', imageSrc: 'https://via.placeholder.com/400x200?text=Foto+3' }
 	];
 
 	// State untuk mengontrol modal mana yang aktif
-	let activeModal: 'edit' | 'view' | 'delete' | null = null;
+	let activeModal: 'add' | 'edit' | 'view' | 'delete' | null = null;
 	let selectedPhoto: (typeof photos)[0] | null = null;
 
     // Variabel untuk Dialog utama
@@ -71,6 +74,18 @@
 			return;
 		}
 
+		if (activeModal === 'add') {
+			if (!formFile) {
+				alert('Silakan unggah foto!');
+				return;
+			}
+			const newId = photos.length > 0 ? Math.max(...photos.map((p) => p.id)) + 1 : 1;
+			photos = [
+				...photos,
+				{ id: newId, title: formTitle, imageSrc: formFilePreview }
+			];
+		}
+
 		if (activeModal === 'edit' && selectedPhoto) {
 			photos = photos.map((p) =>
 				p.id === selectedPhoto!.id ? { ...p, title: formTitle, imageSrc: formFilePreview } : p
@@ -115,14 +130,14 @@
                         </Dialog.Trigger>
                         <Dialog.Content class="sm:max-w-[425px]">
                             <Dialog.Header>
-                                <Dialog.Title>Edit</Dialog.Title>
+                                <Dialog.Title>Edit Judul Banner</Dialog.Title>
                             </Dialog.Header>
                             
                             <div class="grid gap-4 py-4">
                                 <div class="grid w-full gap-y-4">
                                     <div>
                                         <label for="judul" class="block text-sm font-medium mb-2">Judul :</label>
-                                        <input id="judul" class="w-full border rounded-md p-2" />
+										<input id="judul" placeholder="Masukkan Judul yang di inginkan" class="w-full border rounded-md p-2" />
                                     </div>
                                     <div>
                                         <label for="desc" class="block text-sm font-medium mb-2">Deskripsi :</label>
@@ -144,7 +159,7 @@
         </Card.Content>
     </Card.Root>
 
-	<div class="flex items-center justify-between space-x-4">
+	<div class="grid grid-cols-2 gap-6">
 		<Card.Root>
 			<Card.Content class="p-6">
 				<div class="flex items-center justify-between space-x-4">
@@ -161,82 +176,17 @@
 							</Dialog.Trigger>
 							<Dialog.Content class="sm:max-w-[425px]">
 								<Dialog.Header>
-									<Dialog.Title>Edit</Dialog.Title>
+									<Dialog.Title>Edit Poster</Dialog.Title>
 								</Dialog.Header>
 								
 								<div class="grid gap-4 py-4">
 									<div class="grid w-full gap-y-4">
 										<div>
-											<label for="judul" class="block text-sm font-medium mb-2">Judul :</label>
-											<input id="judul" class="w-full border rounded-md p-2" />
-										</div>
-										<div>
-											<label for="desc" class="block text-sm font-medium mb-2">Deskripsi :</label>
-											<textarea id="desc" class="w-full border rounded-md p-2" rows="4"></textarea>
-										</div>
-									</div>
-								</div>
-								<Dialog.Footer>
-									<Dialog.Close>
-										{#snippet child({ props })}
-											<Button.Root {...props} type="submit">Simpan</Button.Root>
-										{/snippet}
-									</Dialog.Close>
-								</Dialog.Footer>
-							</Dialog.Content>
-						</Dialog.Root>
-						<Dialog.Root>
-							<Dialog.Trigger>
-								<Button.Root variant="outline" size="icon">
-									<SquarePen class="h-4 w-4" />
-								</Button.Root>
-							</Dialog.Trigger>
-							<Dialog.Content class="sm:max-w-[425px]">
-								<Dialog.Header>
-									<Dialog.Title>Edit</Dialog.Title>
-								</Dialog.Header>
-								
-								<div class="grid gap-4 py-4">
-									<div class="grid w-full gap-y-4">
-										<div>
-											<label for="judul" class="block text-sm font-medium mb-2">Judul :</label>
-											<input id="judul" class="w-full border rounded-md p-2" />
-										</div>
-										<div>
-											<label for="desc" class="block text-sm font-medium mb-2">Deskripsi :</label>
-											<textarea id="desc" class="w-full border rounded-md p-2" rows="4"></textarea>
-										</div>
-									</div>
-								</div>
-								<Dialog.Footer>
-									<Dialog.Close>
-										{#snippet child({ props })}
-											<Button.Root {...props} type="submit">Simpan</Button.Root>
-										{/snippet}
-									</Dialog.Close>
-								</Dialog.Footer>
-							</Dialog.Content>
-						</Dialog.Root>
-						<Dialog.Root>
-							<Dialog.Trigger>
-								<Button.Root variant="outline" size="icon">
-									<SquarePen class="h-4 w-4" />
-								</Button.Root>
-							</Dialog.Trigger>
-							<Dialog.Content class="sm:max-w-[425px]">
-								<Dialog.Header>
-									<Dialog.Title>Edit</Dialog.Title>
-								</Dialog.Header>
-								
-								<div class="grid gap-4 py-4">
-									<div class="grid w-full gap-y-4">
-										<div>
-											<label for="judul" class="block text-sm font-medium mb-2">Judul :</label>
-											<input id="judul" class="w-full border rounded-md p-2" />
-										</div>
-										<div>
-											<label for="desc" class="block text-sm font-medium mb-2">Deskripsi :</label>
-											<textarea id="desc" class="w-full border rounded-md p-2" rows="4"></textarea>
+											<label for="file-upload" class="flex h-20 flex-1 cursor-pointer flex-col items-center justify-center rounded-md border-2 border-dashed">
+												<upload class="h-6 w-6 text-muted-foreground"></upload>
+												<span class="text-sm text-muted-foreground">Upload File</span>
+											</label>
+											<input id="file-upload" type="file" class="hidden" accept=".jpg, .jpeg, .png" onchange={handleFileChange} />
 										</div>
 									</div>
 								</div>
@@ -252,15 +202,17 @@
 					</div>
 				</div>
 
-				<div>
-					<Image class="pr-10 w-50 h-50" />
+				<div class="grid place-items-center">
+					<!-- <AspectRatio ratio={8 / 5}> -->
+					<Image class="p-6 w-100 h-100" />
+					<!-- </AspectRatio> -->
 				</div>
 			</Card.Content>
 		</Card.Root>
 
 		<Card.Root>
 			<Card.Content class="p-6">
-								<div class="flex items-center justify-between space-x-4">
+				<div class="flex items-center justify-between space-x-4">
 					<div class="flex-grow">
 						<h3 class="font-semibold tracking-tight">Company Profile FIK</h3>
 						<p class="text-sm text-muted-foreground">Kelola video company profile FIK UPNVJ</p>
@@ -274,82 +226,14 @@
 							</Dialog.Trigger>
 							<Dialog.Content class="sm:max-w-[425px]">
 								<Dialog.Header>
-									<Dialog.Title>Edit</Dialog.Title>
+									<Dialog.Title>Edit Video</Dialog.Title>
 								</Dialog.Header>
 								
 								<div class="grid gap-4 py-4">
 									<div class="grid w-full gap-y-4">
 										<div>
-											<label for="judul" class="block text-sm font-medium mb-2">Judul :</label>
-											<input id="judul" class="w-full border rounded-md p-2" />
-										</div>
-										<div>
-											<label for="desc" class="block text-sm font-medium mb-2">Deskripsi :</label>
-											<textarea id="desc" class="w-full border rounded-md p-2" rows="4"></textarea>
-										</div>
-									</div>
-								</div>
-								<Dialog.Footer>
-									<Dialog.Close>
-										{#snippet child({ props })}
-											<Button.Root {...props} type="submit">Simpan</Button.Root>
-										{/snippet}
-									</Dialog.Close>
-								</Dialog.Footer>
-							</Dialog.Content>
-						</Dialog.Root>
-						<Dialog.Root>
-							<Dialog.Trigger>
-								<Button.Root variant="outline" size="icon">
-									<SquarePen class="h-4 w-4" />
-								</Button.Root>
-							</Dialog.Trigger>
-							<Dialog.Content class="sm:max-w-[425px]">
-								<Dialog.Header>
-									<Dialog.Title>Edit</Dialog.Title>
-								</Dialog.Header>
-								
-								<div class="grid gap-4 py-4">
-									<div class="grid w-full gap-y-4">
-										<div>
-											<label for="judul" class="block text-sm font-medium mb-2">Judul :</label>
-											<input id="judul" class="w-full border rounded-md p-2" />
-										</div>
-										<div>
-											<label for="desc" class="block text-sm font-medium mb-2">Deskripsi :</label>
-											<textarea id="desc" class="w-full border rounded-md p-2" rows="4"></textarea>
-										</div>
-									</div>
-								</div>
-								<Dialog.Footer>
-									<Dialog.Close>
-										{#snippet child({ props })}
-											<Button.Root {...props} type="submit">Simpan</Button.Root>
-										{/snippet}
-									</Dialog.Close>
-								</Dialog.Footer>
-							</Dialog.Content>
-						</Dialog.Root>
-						<Dialog.Root>
-							<Dialog.Trigger>
-								<Button.Root variant="outline" size="icon">
-									<SquarePen class="h-4 w-4" />
-								</Button.Root>
-							</Dialog.Trigger>
-							<Dialog.Content class="sm:max-w-[425px]">
-								<Dialog.Header>
-									<Dialog.Title>Edit</Dialog.Title>
-								</Dialog.Header>
-								
-								<div class="grid gap-4 py-4">
-									<div class="grid w-full gap-y-4">
-										<div>
-											<label for="judul" class="block text-sm font-medium mb-2">Judul :</label>
-											<input id="judul" class="w-full border rounded-md p-2" />
-										</div>
-										<div>
-											<label for="desc" class="block text-sm font-medium mb-2">Deskripsi :</label>
-											<textarea id="desc" class="w-full border rounded-md p-2" rows="4"></textarea>
+											<label for="judul" class="block text-sm font-medium mb-2">Link Youtube :</label>
+											<input id="judul" placeholder="Masukkan link youtube video profil fakultas" class="w-full border rounded-md p-2" />
 										</div>
 									</div>
 								</div>
@@ -365,17 +249,19 @@
 					</div>
 				</div>
 
-				<div>
-					<iframe 
-						width="560" 
-						height="315" 
-						src="https://www.youtube.com/embed/eaLfH6a4BWE?autoplay=1&loop=1&mute=1&controls=0si=UiuqwkRtdghH000i" 
-						title="Video Profil FIK UPNVJ"
-						frameborder="0" 
-						allow= "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-						referrerpolicy="strict-origin-when-cross-origin" 
-						allowfullscreen>
-					</iframe>
+				<div class="p-6">
+					<AspectRatio ratio={8 / 5}>
+						<iframe 
+							width=100%
+							height=100%
+							src="https://www.youtube.com/embed/eaLfH6a4BWE?autoplay=1&loop=1&mute=1&controls=0si=UiuqwkRtdghH000i" 
+							title="Video Profil FIK UPNVJ"
+							frameborder="0" 
+							allow= "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+							referrerpolicy="strict-origin-when-cross-origin" 
+							allowfullscreen>
+						</iframe>
+					</AspectRatio>
 				</div>
 			</Card.Content>
 		</Card.Root>
@@ -412,13 +298,21 @@
 			{/each}
 		</Table.Body>
 	</Table.Root>
+
+	<div class="flex justify-end">
+		<Button.Root class="mr-2 bg-[#FF8A00] hover:bg-[#E07B00]" onclick={() => openModal('add')}>
+			<Plus class="mr-2 h-4 w-4" /> Tambah
+		</Button.Root>
+	</div>
 </div>
 
 
 <Dialog.Root bind:open={isDialogOpen} onOpenChange={(open) => !open && closeModal()}>
 	<Dialog.Content>
 		<Dialog.Header>
-			{#if activeModal === 'edit'}
+			{#if activeModal === 'add'}
+				<Dialog.Title>Tambah Foto</Dialog.Title>
+			{:else if activeModal === 'edit'}
 				<Dialog.Title>Edit Foto</Dialog.Title>
 			{:else if activeModal === 'view'}
 				<Dialog.Title>{selectedPhoto?.title}</Dialog.Title>
@@ -432,7 +326,7 @@
 			</Dialog.Footer>
 		{/if}
 
-		{#if activeModal === 'edit'}
+		{#if activeModal === 'add' || activeModal === 'edit'}
 			<div class="grid gap-6 py-4">
 				<div>
 					<Label for="judul">Judul</Label>

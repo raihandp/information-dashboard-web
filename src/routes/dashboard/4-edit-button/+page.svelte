@@ -2,17 +2,15 @@
 	import * as Card from "$lib/components/ui/card/index.js";
 	import * as Button from "$lib/components/ui/button/index.js";
     import * as Dialog from "$lib/components/ui/dialog/index.js";
-	import { SquarePen, CircleX } from "@lucide/svelte";
-
     import * as Table from '$lib/components/ui/table/index.js';
 	import * as AlertDialog from '$lib/components/ui/alert-dialog/index.js';
 	import { Input } from '$lib/components/ui/input/index.js';
 	import { Label } from '$lib/components/ui/label/index.js';
-	import { Eye, Trash2, Plus, Upload } from "@lucide/svelte";
+	import { Textarea } from "$lib/components/ui/textarea/index.js";
+	import { SquarePen, Upload } from "@lucide/svelte";
 
-    // --- 1. STATE MANAGEMENT ---
-	// Di aplikasi nyata, data ini akan datang dari database/API.
-	// Untuk contoh ini, kita gunakan array biasa.
+	// Di pengembangan selanjutnya, data ini akan datang dari database FIK. 
+	// Untuk pengembangan UI/UX ini, sementara kami menggunakan array biasa.
 	let photos = [
 		{ id: 1, title: 'ReadZone', imageSrc: 'https://via.placeholder.com/400x200?text=Foto+1' },
 		{ id: 2, title: 'Kalender Akademik', imageSrc: 'https://via.placeholder.com/400x200?text=Foto+2' },
@@ -20,19 +18,12 @@
 		{ id: 4, title: 'Statistik FIK UPNVJ', imageSrc: 'https://via.placeholder.com/400x200?text=Foto+4' }
 	];
 
-	// State untuk mengontrol modal mana yang aktif
-	let activeModal: 'add' | 'edit' | 'view' | 'delete' | null = null;
+	let activeModal: 'edit' | null = null;
 	let selectedPhoto: (typeof photos)[0] | null = null;
 
-    // Variabel untuk Dialog utama
     let isDialogOpen = false;
-    $: isDialogOpen = activeModal === 'add' || activeModal === 'edit' || activeModal === 'view';
+    $: isDialogOpen = activeModal === 'edit';
 
-    // Variabel untuk Alert Dialog Delete
-    let isAlertOpen = false;
-    $: isAlertOpen = activeModal === 'delete';
-
-	// State untuk form tambah/edit
 	let formTitle = '';
 	let formFile: File | null = null;
 	let formFilePreview = '';
@@ -67,23 +58,10 @@
 		}
 	}
 
-	// --- 3. FUNGSI CRUD (CREATE, UPDATE, DELETE) ---
 	function handleSave() {
 		if (!formTitle) {
 			alert('Judul tidak boleh kosong!');
 			return;
-		}
-
-		if (activeModal === 'add') {
-			if (!formFile) {
-				alert('Silakan unggah foto!');
-				return;
-			}
-			const newId = photos.length > 0 ? Math.max(...photos.map((p) => p.id)) + 1 : 1;
-			photos = [
-				...photos,
-				{ id: newId, title: formTitle, imageSrc: formFilePreview }
-			];
 		}
 
 		if (activeModal === 'edit' && selectedPhoto) {
@@ -94,19 +72,8 @@
 
 		closeModal();
 	}
-
-	function handleDelete() {
-		if (selectedPhoto) {
-			photos = photos.filter((p) => p.id !== selectedPhoto!.id);
-		}
-		closeModal();
-	}
 </script>
 
-<style>
-    
-</style>
-<!-- style="background-color: #FF8A00; text-align: center; color: white; padding: 10px" -->
 <div>
     <h2 style="font-size: 24px;">Edit Tombol</h2>
 </div>
@@ -147,9 +114,7 @@
                             </div>
                             <Dialog.Footer>
                                 <Dialog.Close>
-                                    {#snippet child({ props })}
-                                        <Button.Root {...props} type="submit">Simpan</Button.Root>
-                                    {/snippet}
+									<Button.Root type="submit">Simpan</Button.Root>
                                 </Dialog.Close>
                             </Dialog.Footer>
                         </Dialog.Content>
@@ -159,15 +124,7 @@
         </Card.Content>
     </Card.Root>
 
-    <!-- <div class="p-4 sm:p-6 md:p-10"></div> -->
     <Table.Root class="mt-6">
-		<!-- <Table.Header class="bg-[#FF8A00]">
-			<Table.Row class="text-center">
-				<Table.Head class="w-[50px] text-white">No.</Table.Head>
-				<Table.Head class="text-white">Foto</Table.Head>
-				<Table.Head class="w-[150px] text-right text-white">Aksi</Table.Head>
-			</Table.Row>
-		</Table.Header> -->
 		<Table.Body>
 			{#each photos as photo, i}
 				<Table.Row>
@@ -200,9 +157,7 @@
 								</div>
 								<Dialog.Footer>
 									<Dialog.Close>
-										{#snippet child({ props })}
-											<Button.Root {...props} type="submit">Simpan</Button.Root>
-										{/snippet}
+										<Button.Root type="submit">Simpan</Button.Root>
 									</Dialog.Close>
 								</Dialog.Footer>
 							</Dialog.Content>
@@ -213,35 +168,18 @@
 			{/each}
 		</Table.Body>
 	</Table.Root>
-
-	<!-- <div class="flex justify-end">
-		<Button.Root class="mr-2 bg-[#FF8A00] hover:bg-[#E07B00]" onclick={() => openModal('add')}>
-			<Plus class="mr-2 h-4 w-4" /> Tambah
-		</Button.Root>
-	</div> -->
 </div>
 
 
 <Dialog.Root bind:open={isDialogOpen} onOpenChange={(open) => !open && closeModal()}>
 	<Dialog.Content>
 		<Dialog.Header>
-			{#if activeModal === 'add'}
-				<Dialog.Title>Tambah Foto</Dialog.Title>
-			{:else if activeModal === 'edit'}
+			{#if activeModal === 'edit'}
 				<Dialog.Title>Edit Foto</Dialog.Title>
-			{:else if activeModal === 'view'}
-				<Dialog.Title>{selectedPhoto?.title}</Dialog.Title>
 			{/if}
 		</Dialog.Header>
 
-		{#if activeModal === 'view'}
-			<img src={selectedPhoto?.imageSrc} alt={selectedPhoto?.title} class="mt-4 w-full rounded-md" />
-			<Dialog.Footer>
-				<Button.Root variant="outline" onclick={closeModal}>Tutup</Button.Root>
-			</Dialog.Footer>
-		{/if}
-
-		{#if activeModal === 'add' || activeModal === 'edit'}
+		{#if activeModal === 'edit'}
 			<div class="grid gap-6 py-4">
 				<div>
 					<Label for="judul">Judul</Label>
@@ -270,17 +208,3 @@
 		{/if}
 	</Dialog.Content>
 </Dialog.Root>
-
-<AlertDialog.Root bind:open={isAlertOpen} onOpenChange={(open) => !open && closeModal()}>	<AlertDialog.Content>
-		<AlertDialog.Header>
-			<AlertDialog.Title>Hapus</AlertDialog.Title>
-			<AlertDialog.Description>
-				Apakah anda ingin menghapus foto ini? Aksi ini tidak dapat dibatalkan.
-			</AlertDialog.Description>
-		</AlertDialog.Header>
-		<AlertDialog.Footer>
-			<AlertDialog.Cancel>Tidak</AlertDialog.Cancel>
-			<AlertDialog.Action onclick={handleDelete} class="bg-red-600 hover:bg-red-700">Ya</AlertDialog.Action>
-		</AlertDialog.Footer>
-	</AlertDialog.Content>
-</AlertDialog.Root>

@@ -2,17 +2,15 @@
 	import * as Card from "$lib/components/ui/card/index.js";
 	import * as Button from "$lib/components/ui/button/index.js";
     import * as Dialog from "$lib/components/ui/dialog/index.js";
-	import { SquarePen, CircleX } from "@lucide/svelte";
-
     import * as Table from '$lib/components/ui/table/index.js';
 	import * as AlertDialog from '$lib/components/ui/alert-dialog/index.js';
 	import { Input } from '$lib/components/ui/input/index.js';
 	import { Label } from '$lib/components/ui/label/index.js';
-	import { Eye, Trash2, Plus, Upload } from "@lucide/svelte";
+	import { Textarea } from "$lib/components/ui/textarea/index.js";
+	import { SquarePen, Eye, Trash2, Plus, Upload } from "@lucide/svelte";
 
-    // --- 1. STATE MANAGEMENT ---
-	// Di aplikasi nyata, data ini akan datang dari database/API.
-	// Untuk contoh ini, kita gunakan array biasa.
+	// Di pengembangan selanjutnya, data ini akan datang dari database FIK. 
+	// Untuk pengembangan UI/UX ini, sementara kami menggunakan array biasa.
 	let photos = [
 		{ id: 1, title: 'QR Code 1', imageSrc: 'https://via.placeholder.com/400x200?text=Foto+1' },
 		{ id: 2, title: 'QR Code 2', imageSrc: 'https://via.placeholder.com/400x200?text=Foto+2' },
@@ -22,24 +20,19 @@
 		{ id: 3, title: 'QR Code 6', imageSrc: 'https://via.placeholder.com/400x200?text=Foto+6' }
 	];
 
-	// State untuk mengontrol modal mana yang aktif
 	let activeModal: 'add' | 'edit' | 'view' | 'delete' | null = null;
 	let selectedPhoto: (typeof photos)[0] | null = null;
 
-    // Variabel untuk Dialog utama
     let isDialogOpen = false;
     $: isDialogOpen = activeModal === 'add' || activeModal === 'edit' || activeModal === 'view';
 
-    // Variabel untuk Alert Dialog Delete
     let isAlertOpen = false;
     $: isAlertOpen = activeModal === 'delete';
 
-	// State untuk form tambah/edit
 	let formTitle = '';
 	let formFile: File | null = null;
 	let formFilePreview = '';
 
-	// --- 2. FUNGSI-FUNGSI UNTUK MODAL ---
 	function openModal(type: typeof activeModal, photo: (typeof photos)[0] | null = null) {
 		activeModal = type;
 		selectedPhoto = photo;
@@ -69,7 +62,6 @@
 		}
 	}
 
-	// --- 3. FUNGSI CRUD (CREATE, UPDATE, DELETE) ---
 	function handleSave() {
 		if (!formTitle) {
 			alert('Judul tidak boleh kosong!');
@@ -105,10 +97,6 @@
 	}
 </script>
 
-<style>
-    
-</style>
-<!-- style="background-color: #FF8A00; text-align: center; color: white; padding: 10px" -->
 <div>
     <h2 style="font-size: 24px;">Edit Banner 3</h2>
 </div>
@@ -124,11 +112,9 @@
                 <div>
                     <Dialog.Root>
                         <Dialog.Trigger>
-                            {#snippet child({ props })}
-                                <Button.Root {...props} variant="outline" size="icon" aria-label="Edit">
-                                    <SquarePen class="h-4 w-4" />
-                                </Button.Root>
-                            {/snippet}
+							<Button.Root variant="outline" size="icon">
+								<SquarePen class="h-4 w-4" />
+							</Button.Root>
                         </Dialog.Trigger>
                         <Dialog.Content class="sm:max-w-[425px]">
                             <Dialog.Header>
@@ -138,20 +124,18 @@
                             <div class="grid gap-4 py-4">
                                 <div class="grid w-full gap-y-4">
                                     <div>
-                                        <label for="judul" class="block text-sm font-medium mb-2">Judul :</label>
-                                        <input id="judul" class="w-full border rounded-md p-2" />
+                                        <Label for="judul" class="block text-sm font-medium mb-2">Judul :</Label>
+                                        <Input id="judul" class="w-full border rounded-md p-2" />
                                     </div>
                                     <div>
-                                        <label for="desc" class="block text-sm font-medium mb-2">Deskripsi :</label>
-                                        <textarea id="desc" class="w-full border rounded-md p-2" rows="4"></textarea>
+                                        <Label for="desc" class="block text-sm font-medium mb-2">Deskripsi :</Label>
+                                        <Textarea id="desc" class="w-full border rounded-md p-2"></Textarea>
                                     </div>
                                 </div>
                             </div>
                             <Dialog.Footer>
                                 <Dialog.Close>
-                                    {#snippet child({ props })}
-                                        <Button.Root {...props} type="submit">Simpan</Button.Root>
-                                    {/snippet}
+                                        <Button.Root type="submit">Simpan</Button.Root>
                                 </Dialog.Close>
                             </Dialog.Footer>
                         </Dialog.Content>
@@ -161,15 +145,7 @@
         </Card.Content>
     </Card.Root>
 
-    <!-- <div class="p-4 sm:p-6 md:p-10"></div> -->
     <Table.Root class="mt-6">
-		<!-- <Table.Header class="bg-[#FF8A00]">
-			<Table.Row class="text-center">
-				<Table.Head class="w-[50px] text-white">No.</Table.Head>
-				<Table.Head class="text-white">Foto</Table.Head>
-				<Table.Head class="w-[150px] text-right text-white">Aksi</Table.Head>
-			</Table.Row>
-		</Table.Header> -->
 		<Table.Body>
 			{#each photos as photo, i}
 				<Table.Row>
@@ -223,11 +199,11 @@
 		{#if activeModal === 'add' || activeModal === 'edit'}
 			<div class="grid gap-6 py-4">
 				<div>
-					<label for="judul" class="block text-sm font-medium mb-2">Judul :</label>
+					<Label for="judul" class="block text-sm font-medium mb-2">Judul :</Label>
 					<Input id="judul" bind:value={formTitle} placeholder={activeModal === 'edit' ? selectedPhoto?.title : 'Masukkan judul foto'} class={activeModal === 'edit' ? 'placeholder:opacity-50' : ''} />
 				</div>
 				<div>
-                    <label for="judul" class="block text-sm font-medium mb-2">Ubah foto :</label>
+                    <Label for="judul" class="block text-sm font-medium mb-2">Ubah foto :</Label>
 					<div class="mt-2 flex items-center gap-4">
 						{#if activeModal === 'edit'}
 							<img src={selectedPhoto?.imageSrc} alt="Current" class="h-20 w-20 rounded-md border object-cover" />
@@ -250,7 +226,8 @@
 	</Dialog.Content>
 </Dialog.Root>
 
-<AlertDialog.Root bind:open={isAlertOpen} onOpenChange={(open) => !open && closeModal()}>	<AlertDialog.Content>
+<AlertDialog.Root bind:open={isAlertOpen} onOpenChange={(open) => !open && closeModal()}>
+	<AlertDialog.Content>
 		<AlertDialog.Header>
 			<AlertDialog.Title>Hapus</AlertDialog.Title>
 			<AlertDialog.Description>

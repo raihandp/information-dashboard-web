@@ -5,8 +5,32 @@
 	import { AspectRatio } from "$lib/components/ui/aspect-ratio/index.js";
 	import { Input } from '$lib/components/ui/input/index.js';
 	import { Label } from '$lib/components/ui/label/index.js';
-	import { Textarea } from "$lib/components/ui/textarea/index.js";
 	import { SquarePen, Image, Upload } from "@lucide/svelte";
+
+	// Di pengembangan selanjutnya, data ini akan datang dari database FIK. 
+	// Untuk pengembangan UI/UX ini, sementara kami menggunakan array biasa.
+	let photos = [
+		{ id: 1, title: 'Nama Foto', imageSrc: 'https://via.placeholder.com/400x200?text=Foto+1' },
+	];
+
+
+	let formFile: File | null = null;
+	let formFilePreview = '';
+
+	function handleFileChange(e: Event) {
+		const target = e.target as HTMLInputElement;
+		if (target.files && target.files.length > 0) {
+			const file = target.files[0];
+			const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png'];
+			if (!allowedTypes.includes(file.type)) {
+				alert('Format file tidak didukung! Harap unggah JPG, JPEG, atau PNG.');
+				target.value = ''; // Reset input file
+				return;
+			}
+			formFile = file;
+			formFilePreview = URL.createObjectURL(file);
+		}
+	}
 </script>
 
 <div>
@@ -36,12 +60,13 @@
                             <div class="grid gap-4 py-4">
                                 <div class="grid w-full gap-y-4">
                                     <div>
-                                        <Label for="judul" class="block text-sm font-medium mb-2">Judul :</Label>
-										<Input id="judul" placeholder="Masukkan Judul yang di inginkan" class="w-full border rounded-md p-2" />
+                                        <label for="judul" class="block text-sm font-medium mb-2">Judul :</label>
+                                    
+									<input id="judul" placeholder="Masukkan Judul yang di inginkan" class="w-full border rounded-md p-2" />
                                     </div>
                                     <div>
-                                        <Label for="desc" class="block text-sm font-medium mb-2">Deskripsi :</Label>
-                                        <Textarea id="desc" class="w-full border rounded-md p-2"></Textarea>
+                                        <label for="desc" class="block text-sm font-medium mb-2">Deskripsi :</label>
+                                        <textarea id="desc" class="w-full border rounded-md p-2" rows="4"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -85,7 +110,7 @@
 												<Upload class="h-6 w-6 text-muted-foreground"></Upload>
 												<span class="text-sm text-muted-foreground">Upload File</span>
 											</Label>
-											<Input id="file-upload" type="file" class="hidden" accept=".jpg, .jpeg, .png" />
+											<Input id="file-upload" type="file" class="hidden" accept=".jpg, .jpeg, .png" onchange={handleFileChange} />
 										</div>
 									</div>
 								</div>
@@ -130,8 +155,8 @@
 								<div class="grid gap-4 py-4">
 									<div class="grid w-full gap-y-4">
 										<div>
-											<Label for="judul" class="block text-sm font-medium mb-2">Link Youtube :</Label>
-											<Input id="judul" placeholder="Masukkan link youtube video profil fakultas" class="w-full border rounded-md p-2" />
+											<label for="judul" class="block text-sm font-medium mb-2">Link Youtube :</label>
+											<input id="judul" placeholder="Masukkan link youtube video profil fakultas" class="w-full border rounded-md p-2" />
 										</div>
 									</div>
 								</div>

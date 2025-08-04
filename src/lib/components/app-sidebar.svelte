@@ -47,11 +47,11 @@
     url: "/dashboard/6-running-text",
     icon: RectangleEllipsis,
   },
-  {
-    title: "Testing Page",
-    url: "/dashboard/tests",
-    icon: RectangleEllipsis,
-  },
+  // {
+  //   title: "Testing Page",
+  //   url: "/dashboard/tests",
+  //   icon: RectangleEllipsis,
+  // },
   ];
 </script>
 
